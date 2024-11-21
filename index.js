@@ -18,7 +18,7 @@ app.use(express.json());
 // Azure Custom Vision Configuration
 const predictionKey = process.env.VISION_PREDICTION_KEY;
 const predictionEndpoint = process.env.VISION_PREDICTION_ENDPOINT;
-const publishIterationName = "classifyModel"; // Replace with your published iteration name
+const publishIterationName = "CarTypeIdentifyer";
 const predictorCredentials = new msRest.ApiKeyCredentials({
   inHeader: { "Prediction-key": predictionKey },
 });
@@ -39,10 +39,10 @@ const pool = mysql.createPool({
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASS,
   database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQL_PORT || 3306, // Default to MySQL port
+  port: process.env.MYSQL_PORT || 3306,
   ssl: {
     rejectUnauthorized: true,
-    ca: fs.readFileSync("./DigiCertGlobalRootCA.crt.pem"), // Ensure path is valid
+    ca: fs.readFileSync("./DigiCertGlobalRootCA.crt.pem"),
   },
   waitForConnections: true,
   connectionLimit: 10,
